@@ -1,12 +1,7 @@
-# FTC TEAM 7462 (Not to Scale) Code, DECODE season (2025-2026)
+# FTC TEAM 7462 (Not to Scale) Code, BIOBUZZ season (2026-2027)
 
 Code for Not to Scale DECODE robot, which has:
- * Two Collectors
- * Two Shooters
- * Pinpoint Odometry
- * Limelight 3A camera
- * Pedro Pathing - path following code
- * Base park lifting mechanism (servo)
+ * 
 
 ## NOTICE
 
