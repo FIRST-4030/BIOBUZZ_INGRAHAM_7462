@@ -32,6 +32,8 @@ package org.firstinspires.ftc.teamcode.OpModes;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.teamcode.BiobuzzShooter;
 import org.firstinspires.ftc.teamcode.Chassis;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -46,20 +48,40 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class MecanumTeleOpChassis extends OpMode {
 
     Chassis chassis;
+    BiobuzzShooter shooter;
 
+    @Override
     public void init() {
         chassis = new Chassis(hardwareMap);
+
+        shooter = new BiobuzzShooter(hardwareMap, "shooter", true);
+        //shooter.setControllerValues(0.3, 0.0243);
+        //Need to set control values, last years 7462 values left in currently
     }
 
+    @Override
     public void init_loop() {
 
     }
 
+    @Override
     public void start() {
         chassis.setMaxSpeed(1);
     }
 
+    @Override
     public void loop() {
+
+        shooter.overridePower();
+
+        //TELEMETRY
+
+        telemetry.addData("Shooter Velo", shooter.getVelocity());
+        //telemetry.addData("Shooter Target Velo", shooter.targetVelocity);
+        //
+
+
+        //CONTROLS (edit later)
 
         if (gamepad1.aWasPressed()) {
             chassis.frontLeftDrive.setPower(1);
@@ -82,10 +104,10 @@ public class MecanumTeleOpChassis extends OpMode {
             chassis.backLeftDrive.setPower(0);
         }
 
-        if (gamepad1.xWasPressed()) {
+        if (gamepad1.x) {
             chassis.backRightDrive.setPower(1);
         }
-        else if (gamepad1.xWasReleased()) {
+        else {
             chassis.backRightDrive.setPower(0);
         }
 
